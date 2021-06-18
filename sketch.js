@@ -1,23 +1,24 @@
-var sides = 6; //start 6
-var gamestate = 0;    //0 = start screen, 1 = playing, 2 = dead, 3 = stage changing, 4 = end screen
-var layersOnScreen = 10; //default 10
-var controls = 0;
-var walls = [];
-var health = 3;
-var stageTime = 0;
-var minSize;
-var maxSize;
-var invincible = 0; //0 = not invincible, 100 = just invincible, anything inbetween is it fading
-var animationTimer = 0;
-var currentCol;
-var stage = 1;
-var song;
-var heal;
-var hurt;
-var warp;
-var paused = 0;
-var moving = 0;
-var difficulty = 0;
+let sides = 6; //start 6
+let gamestate = 0;    //0 = start screen, 1 = playing, 2 = dead, 3 = stage changing, 4 = end screen
+let layersOnScreen = 10; //default 10
+let controls = 0;
+let walls = [];
+let health = 3;
+let stageTime = 0;
+let minSize;
+let maxSize;
+let invincible = 0; //0 = not invincible, 100 = just invincible, anything inbetween is it fading
+let animationTimer = 0;
+let currentCol;
+let stage = 1;
+let song;
+let heal;
+let hurt;
+let warp;
+let paused = 0;
+let moving = 0;
+let difficulty = 0;
+let bgtimer = 0;
 
 function preload() {
   song = loadSound('sounds/dududu.wav');
@@ -61,6 +62,11 @@ function windowResized() {
 }
 
 function draw() {
+  if (bgtimer == 10) {
+    background(20);
+    bgtimer = 0
+  }
+  bgtimer++;
   background(20,120);
   translate(width/2,height/2);
   if (paused == 0) {
